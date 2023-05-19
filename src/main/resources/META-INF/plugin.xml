@@ -5,26 +5,34 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Bad-bird-idea-plugin</name>
+    <name>Bad-Bird-Idea</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="support@badbird.com" url="https://www.badbird.com">BadBird Inc.</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
-  ]]></description>
+    <description>A small bird will analize your code and poop on it if your code contains mistakes</description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <localInspection
+        language="kotlin"
+        groupPath="BadBird"
+        groupBundle="messages.InspectionsBundle"
+        groupKey="group.names.probable.bugs"
+        enabledByDefault="true"
+        implementationClass="com.badbird.badbirdideaplugin.extensions.BadBirdInspection"
+        displayName="BadBird Error"
+        shortName="BadBird Error"
+        runForWholeFile="true"
+        />
     </extensions>
 </idea-plugin>
