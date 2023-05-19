@@ -1,0 +1,1 @@
+rootProject.name = "bad-bird-idea-plugin"
