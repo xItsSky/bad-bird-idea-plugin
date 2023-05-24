@@ -1,9 +1,9 @@
-package com.components.windowtools
+package com.badbird.components.windowtools
 
-import com.intellij.openapi.editor.DisposableEditorPanel
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
+import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiTreeChangeEvent
 import com.intellij.psi.PsiTreeChangeListener
@@ -54,6 +54,10 @@ class BirdWindowTools: ToolWindowFactory {
             }
 
             override fun childAdded(event: PsiTreeChangeEvent) {
+                if(event.element is PsiErrorElement) {
+                    // TODO poop
+                    //(event.element as PsiErrorElement)
+                }
                 updateImage(project, imageLabel)
             }
 
