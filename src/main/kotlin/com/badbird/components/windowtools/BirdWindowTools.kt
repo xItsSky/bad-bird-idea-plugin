@@ -17,7 +17,7 @@ class BirdWindowTools : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         // Set up the panel
         panel.add(imageLabel)
-        toolWindow.contentManager.addContent(toolWindow.contentManager.factory.createContent(panel, "My bird view", false))
+        toolWindow.contentManager.addContent(toolWindow.contentManager.factory.createContent(panel, "", false))
 
         // Set up the listener
         val birdListener = BirdPsiTreeChangeListener(imageLabel)
