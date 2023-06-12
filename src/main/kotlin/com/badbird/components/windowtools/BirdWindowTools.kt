@@ -2,6 +2,7 @@ package com.badbird.components.windowtools
 
 import com.badbird.components.listeners.BirdPsiTreeChangeListener
 import com.badbird.shared.models.Animation
+import com.badbird.shared.scheduler.AnimationScheduler
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
@@ -11,8 +12,9 @@ import javax.swing.JLabel
 import javax.swing.JPanel
 
 class BirdWindowTools : ToolWindowFactory {
-    private val animation = Animation.AnimationFactory.createAnimation("src/main/resources/assets/images/poop-animation")
+    private val animation = Animation.AnimationFactory.BAD_BIRD_ANIMATION
 
+    private val scheduler = AnimationScheduler(animation, 3)
     private var imageLabel = JLabel()
     private var panel = JPanel()
 
@@ -32,8 +34,7 @@ class BirdWindowTools : ToolWindowFactory {
     }
 
     private fun setAnimationPanel() {
-        val image = animation.currentImage
-        val urlImage = javaClass.getResource(image.path + image.name)
+        val urlImage = animation.currentImage
         val imageIcon = ImageIcon(urlImage)
         this.imageLabel.icon = imageIcon
         this.imageLabel.revalidate()
