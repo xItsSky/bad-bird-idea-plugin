@@ -8,14 +8,14 @@
     <name>Bad-bird-idea-plugin</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="support@monkey-dev-community.fr" url="https://discord.gg/uZ43SdfWrp">Monkey Dev Community</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    BadBird is funny plugin which draw a bird on a small window section. Once an error is detected the bird poop. The more you make mistakes, the more bird will poop.<br>
+    You will have <b>to code properly</b> if you want to <b>avoid the avalanche of poop</b> ! 😜
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
