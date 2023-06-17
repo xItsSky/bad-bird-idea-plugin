@@ -1,23 +1,42 @@
 package com.badbird.components.windowtools
 
 import com.badbird.components.listeners.BirdPsiTreeChangeListener
+import com.badbird.components.scheduler.AnimationScheduler
 import com.badbird.shared.models.Animation
-import com.badbird.shared.scheduler.AnimationScheduler
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.psi.PsiManager
-import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JPanel
 
+/**
+ * The duration of the bird animation
+ */
+private const val ANIMATION_DURATION = 3000
+
+/**
+ * The Bird Window Tools which manage the Bird window
+ *
+ * @author ItsSky
+ */
 class BirdWindowTools : ToolWindowFactory {
+    /**
+     * The BadBird animation
+     */
     private val animation = Animation.AnimationFactory.BAD_BIRD_ANIMATION
 
-    private val scheduler = AnimationScheduler(animation, 3)
+
+    /**
+     * Graphical components
+     */
     private var imageLabel = JLabel()
     private var panel = JPanel()
 
+    /**
+     * The animation scheduler
+     */
+    private lateinit var scheduler: AnimationScheduler
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         // Set up the panel
@@ -27,17 +46,10 @@ class BirdWindowTools : ToolWindowFactory {
         // Set up the listener
         val birdListener = BirdPsiTreeChangeListener(imageLabel)
         val psiManager = PsiManager.getInstance(project)
-        psiManager.addPsiTreeChangeListener(birdListener)
+        psiManager.addPsiTreeChangeListener(birdListener) // TODO: Seems to be deprecated. Need to be rewrite
 
-        // Set default image
-        this.setAnimationPanel()
-    }
-
-    private fun setAnimationPanel() {
-        val urlImage = animation.currentImage
-        val imageIcon = ImageIcon(urlImage)
-        this.imageLabel.icon = imageIcon
-        this.imageLabel.revalidate()
-        this.imageLabel.repaint()
+        // Initialize the animation scheduler
+        this.scheduler = AnimationScheduler(imageLabel, animation, ANIMATION_DURATION)
+        this.scheduler.run()
     }
 }
