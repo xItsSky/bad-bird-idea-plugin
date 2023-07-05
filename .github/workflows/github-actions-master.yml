@@ -1,5 +1,5 @@
 ---
-name: kotlint
+name: Bad bird CI/CD
 on:
   pull_request:
     paths:
@@ -9,6 +9,7 @@ jobs:
   ktlint:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "🔎 Kotlint trigger by a ${{ github.event_name }} from ${{ github.ref }} to master by ${{ github.actor }}"
       - name: checkout
         uses: actions/checkout@v2.3.2
       - name: ktlint
